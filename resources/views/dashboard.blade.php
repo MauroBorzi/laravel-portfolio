@@ -7,7 +7,7 @@
         </h2>
 
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card shadow-lg border-0 rounded-4">
                     <div class="card-header bg-primary text-white fs-5 fw-semibold">
                         {{ __('User Dashboard') }}
@@ -21,15 +21,20 @@
                             </div>
                         @endif
 
-                        <p class="fs-5 text-secondary">
+                        <p class="fs-5 text-secondary text-center">
                             Benvenuto nella tua dashboard! Qui puoi gestire i tuoi post e accedere alle varie funzionalità.
                         </p>
 
-                        <div class="mt-4 text-center">
+                        <div class="mt-4 d-flex justify-content-center gap-3">
                             <a href="{{ route('posts.index') }}" class="btn btn-primary btn-lg shadow-sm px-4">
                                 Vai a tutti i post
                             </a>
+
+                            <a href="{{ route('posts.create') }}" class="btn btn-primary btn-lg shadow-sm px-4">
+                                Crea nuovo post
+                            </a>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -42,7 +47,7 @@
             border-top-right-radius: 16px;
         }
 
-        .btn-danger:hover {
+        .btn-primary:hover {
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transition: all 0.2s;
         }

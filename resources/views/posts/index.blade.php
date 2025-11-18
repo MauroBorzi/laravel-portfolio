@@ -34,9 +34,13 @@
                 </div>
             </div>
         </div>
-        <div class="mt-4">
+        <div class="mt-4 d-flex justify-content-between gap-3">
             <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg shadow-sm">
-                ← Torna alla dashboard
+                Torna alla dashboard
+            </a>
+
+            <a href="{{ route('posts.create') }}" class="btn btn-primary btn-lg shadow-sm px-4">
+                Crea nuovo post
             </a>
         </div>
     </div>

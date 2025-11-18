@@ -1,34 +1,71 @@
 @extends('layouts.posts')
 
-@section('title', 'Aggiungi un post')
-
 @section('content')
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
 
-    <form action="{{ route('posts.store') }}" method="POST">
-        @csrf
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-header bg-primary text-white fs-5 fw-semibold">
+                        Aggiungi un nuovo post
+                    </div>
 
-        <div class="form-control my-3 d-flex flex-column">
-            <label for="title">Titolo</label>
-            <input type="text" name="title" id="title">
+                    <div class="card-body">
+
+                        <form action="{{ route('posts.store') }}" method="POST">
+                            @csrf
+
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Titolo</label>
+                                <input type="text" class="form-control rounded-3 shadow-sm" name="title"
+                                    id="title">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="author" class="form-label">Autore</label>
+                                <input type="text" class="form-control rounded-3 shadow-sm" name="author"
+                                    id="author">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Categoria</label>
+                                <input type="text" class="form-control rounded-3 shadow-sm" name="category"
+                                    id="category">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="content" class="form-label">Contenuto</label>
+                                <textarea class="form-control rounded-3 shadow-sm" name="content" id="content" rows="6"></textarea>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg shadow px-5">
+                                    Crea
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
+    </div>
 
-        <div class="form-control mb-3 d-flex flex-column">
-            <label for="author">Autore</label>
-            <input type="text" name="author" id="author">
-        </div>
+    <style>
+        .card-header {
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+        }
 
-        <div class="form-control mb-3 d-flex flex-column">
-            <label for="category">Categoria</label>
-            <input type="text" name="category" id="category">
-        </div>
+        .form-control:focus {
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.45);
+        }
 
-        <div class="form-control mb-3 d-flex flex-column">
-            <label for="content">contenuto</label>
-            <textarea name="content" id="content" cols="30" rows="10"></textarea>
-        </div>
-
-        <input type="submit" value="Crea">
-
-    </form>
-
+        .btn-primary:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s;
+        }
+    </style>
 @endsection
