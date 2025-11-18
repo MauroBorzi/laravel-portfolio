@@ -39,12 +39,26 @@
                                         </span>
                                     </td>
 
-                                    <td class="text-center">
+                                    <td class="text-center d-flex justify-content-center gap-2">
+
+                                        <!-- Modifica -->
                                         <a href="{{ route('posts.edit', $post->id) }}"
-                                            class="btn btn-outline-primary btn-sm px-3 rounded-3 shadow-sm"
-                                            title="Modifica">
+                                            class="btn btn-outline-warning btn-sm shadow-sm" title="Modifica">
                                             <i class="bi bi-pencil-square fs-5"></i>
                                         </a>
+
+                                        <!-- Elimina -->
+                                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST"
+                                            onsubmit="return confirm('Sei sicuro di voler eliminare questo post?')">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit" class="btn btn-outline-danger btn-sm shadow-sm"
+                                                title="Elimina">
+                                                <i class="bi bi-trash3 fs-5"></i>
+                                            </button>
+                                        </form>
+
                                     </td>
 
                                 </tr>
