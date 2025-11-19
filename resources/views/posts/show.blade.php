@@ -14,7 +14,7 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h6 class="text-muted mb-0">Autore: {{ $post->author }}</h6>
                             <span class="badge bg-info text-dark fs-6 px-3 py-2 rounded-pill">
-                                {{ $post->category }}
+                                {{ $post->category->name }}
                             </span>
                         </div>
 

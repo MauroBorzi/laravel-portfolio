@@ -29,9 +29,14 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="category" class="form-label">Categoria</label>
-                                <input type="text" class="form-control rounded-3 shadow-sm" name="category"
-                                    id="category" value="{{ $post->category }}">
+                                <label for="category_id" class="form-label fw-semibold">Categoria</label>
+                                <select name="category_id" id="category_id" class="form-select rounded-3 shadow-sm">
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}"
+                                            {{ $post->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="mb-3">
