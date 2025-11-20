@@ -6,7 +6,7 @@
         <h1 class="mb-4 text-center text-secondary fw-bold">Tutti i Post</h1>
 
         <div class="card shadow-lg border-0 rounded-4">
-            <div class="card-header bg-primary text-white fs-5 fw-semibold">
+            <div class="card-header bg-primary text-white fs-5 fw-semibold rounded-top">
                 Elenco completo dei post
             </div>
 
@@ -39,26 +39,28 @@
                                         </span>
                                     </td>
 
-                                    <td class="text-center d-flex justify-content-center gap-2">
+                                    <td class="text-center">
+                                        <div class="d-inline-flex gap-2">
 
-                                        <!-- Modifica -->
-                                        <a href="{{ route('posts.edit', $post->id) }}"
-                                            class="btn btn-outline-warning btn-sm shadow-sm" title="Modifica">
-                                            <i class="bi bi-pencil-square fs-5"></i>
-                                        </a>
+                                            <!-- Modifica -->
+                                            <a href="{{ route('posts.edit', $post->id) }}"
+                                                class="btn btn-outline-warning btn-sm shadow-sm" title="Modifica">
+                                                <i class="bi bi-pencil-square fs-5"></i>
+                                            </a>
 
-                                        <!-- Elimina -->
-                                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST"
-                                            onsubmit="return confirm('Sei sicuro di voler eliminare questo post?')">
-                                            @csrf
-                                            @method('DELETE')
+                                            <!-- Elimina -->
+                                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST"
+                                                onsubmit="return confirm('Sei sicuro di voler eliminare questo post?')">
+                                                @csrf
+                                                @method('DELETE')
 
-                                            <button type="submit" class="btn btn-outline-danger btn-sm shadow-sm"
-                                                title="Elimina">
-                                                <i class="bi bi-trash3 fs-5"></i>
-                                            </button>
-                                        </form>
+                                                <button type="submit" class="btn btn-outline-danger btn-sm shadow-sm"
+                                                    title="Elimina">
+                                                    <i class="bi bi-trash3 fs-5"></i>
+                                                </button>
+                                            </form>
 
+                                        </div>
                                     </td>
 
                                 </tr>
@@ -96,6 +98,12 @@
         .card-header {
             border-top-left-radius: 16px;
             border-top-right-radius: 16px;
+        }
+
+        /* Uniforma hover su bottoni */
+        .btn:hover {
+            transform: translateY(-1px);
+            transition: 0.2s;
         }
     </style>
 @endsection
