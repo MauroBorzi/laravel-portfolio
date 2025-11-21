@@ -10,9 +10,9 @@
                         Aggiungi un nuovo post
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body p-4">
 
-                        <form action="{{ route('posts.store') }}" method="POST">
+                        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             {{-- TITOLO --}}
@@ -42,19 +42,25 @@
                             {{-- TAGS --}}
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">Tags</label>
-                                <div class="d-flex flex-wrap gap-2">
 
+                                <div class="d-flex flex-wrap gap-2">
                                     @foreach ($tags as $tag)
-                                        <div class="tag-item">
+                                        <label for="tag-{{ $tag->id }}"
+                                            class="tag-label px-3 py-2 rounded-pill shadow-sm">
                                             <input type="checkbox" name="tags[]" value="{{ $tag->id }}"
                                                 id="tag-{{ $tag->id }}" class="tag-checkbox d-none">
-                                            <label for="tag-{{ $tag->id }}" class="tag-label">
-                                                {{ $tag->name }}
-                                            </label>
-                                        </div>
+                                            <span>{{ $tag->name }}</span>
+                                        </label>
                                     @endforeach
-
                                 </div>
+                            </div>
+
+                            {{-- IMMAGINE --}}
+                            <div class="mb-3">
+                                <label for="image" class="form-label fw-semibold">Immagine</label>
+
+                                <input id="image" name="image" type="file"
+                                    class="form-control rounded-3 shadow-sm p-2">
                             </div>
 
                             {{-- CONTENUTO --}}
@@ -80,22 +86,22 @@
     </div>
 
     <style>
-        /* Focus uniformato */
+        /* Focus uniforme */
         .form-control:focus,
         .form-select:focus {
             box-shadow: 0 0 6px rgba(0, 123, 255, 0.45) !important;
             border-color: #80bdff;
         }
 
-        /* Tag come badge interattivi */
+        /* Tag come pill interattive */
         .tag-label {
-            padding: 6px 14px;
-            border-radius: 20px;
-            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            background: #eef1f6;
             cursor: pointer;
             transition: 0.2s;
-            font-size: 0.9rem;
-            border: 1px solid #ced4da;
+            border: 1px solid #d0d5dd;
+            font-weight: 500;
         }
 
         .tag-label:hover {
@@ -104,11 +110,27 @@
             color: #0d6efd;
         }
 
-        /* Quando il tag è selezionato */
+        /* Tag selezionato */
+        .tag-checkbox:checked+span,
+        .tag-checkbox:checked~span {
+            color: white !important;
+        }
+
+        .tag-checkbox:checked+span,
+        .tag-checkbox:checked~span {
+            font-weight: bold;
+        }
+
+        .tag-checkbox:checked+span,
+        .tag-checkbox:checked~span {
+            background: none;
+        }
+
+        .tag-checkbox:checked~.tag-label,
         .tag-checkbox:checked+.tag-label {
-            background: #0d6efd;
-            border-color: #0d6efd;
-            color: white;
+            background: #0d6efd !important;
+            border-color: #0d6efd !important;
+            color: white !important;
             box-shadow: 0 0 6px rgba(13, 110, 253, 0.5);
         }
 

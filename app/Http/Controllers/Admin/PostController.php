@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -43,6 +44,13 @@ class PostController extends Controller
         $newPost->author = $data['author'];
         $newPost->category_id = $data['category_id'];
         $newPost->content = $data['content'];
+
+        if (array_key_exists("image", $data)) {
+            $img_url = Storage::putFile('posts', $data['image']);
+
+            $newPost->image = $img_url;
+        }
+
 
         $newPost->save();
 
