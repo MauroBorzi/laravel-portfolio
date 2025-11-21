@@ -92,6 +92,14 @@ class PostController extends Controller
         $post->category_id = $data['category_id'];
         $post->content = $data['content'];
 
+        if (array_key_exists("image", $data)) {
+            Storage::delete($post->image);
+
+            $img_url = Storage::putFile('posts', $data['image']);
+
+            $post->image = $img_url;
+        }
+
         $post->update();
 
         if ($request->has('tags')) {
@@ -108,6 +116,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->image) {
+            Storage::delete($post->image);
+        }
+
         $post->delete();
         return redirect()->route("posts.index");
     }
